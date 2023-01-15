@@ -28,7 +28,7 @@
                                     <div class="card-body text-center">
                                         <img src="{{asset('img/avatars/avatar.png')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
                                         <h5 class="card-title mb-0">{{$user->name}} {{$user->surname}}</h5>
-                                        <div class="text-muted mb-2">Lead Marketer</div>
+                                        <div class="text-muted mb-2">Job Description</div>
                                     </div>
                                     
                                     <hr class="my-0" />
@@ -36,16 +36,13 @@
                                         <h5 class="h6 card-title">About</h5>
                                         <ul class="list-unstyled mb-0">
                                             <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Resident in <br> <a href="#">
-                                                389/9, <br>
-                                                Mbizo, <br>
-                                                Kwekwe, <br>
-                                                Zimbabwe
+                                                <br>
                                             </a></li>
     
                                             <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <br><a href="#">
-                                                Resbright Investments
+                                                
                                             </a></li>
-                                            <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Zimbabwe</a></li>
+                                            <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Country</a></li>
                                         </ul>
                                     </div>
                                     <hr class="my-0" />
