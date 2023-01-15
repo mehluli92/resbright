@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\EmploymentDetails;
 
 class EmploymentController extends Controller
 {
@@ -68,7 +69,18 @@ class EmploymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employment = EmploymentDetails::find($id);
+
+        $employment->company = $request->company;
+        $employment->position = $request->position;
+        $employment->ec_number = $request->ec_number;
+        $employment->user_id = $request->user_id;
+
+        $employment->save();
+
+        $user =  $employment->user;
+
+        return back()->with('user', $user);
     }
 
     /**

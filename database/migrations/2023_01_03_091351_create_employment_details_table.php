@@ -15,6 +15,11 @@ class CreateEmploymentDetailsTable extends Migration
     {
         Schema::create('employment_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');	
+            $table->string('ec_number')->nullable();
+            $table->string('position')->nullable();
+            $table->string('company')->nullable();
+            $table->softDeletes('deleted_at', 0);	
             $table->timestamps();
         });
     }

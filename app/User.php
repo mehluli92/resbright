@@ -46,9 +46,9 @@ class User extends Authenticatable
         return $this->hasOne('App\Contact');
     }
 
-    public function employment()
+    public function employment_detail()
     {
-        return $this->hasOne('App\Employment');
+        return $this->hasOne('App\EmploymentDetails');
     }
 
     public function rb_files()

@@ -43,13 +43,17 @@
                                 @if ($user->contact === null)
                                     
                                 @else
-                                <form method="POST" action="{{ route('users.destroy', $user->contact->id)}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-lg btn-primary">
-                                        <i class="align-middle" data-feather="delete"></i>
-                                    </button>
-                                </form>
+
+                                    @can('superadmin')
+                                        <form method="POST" action="{{ route('users.destroy', $user->contact->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-lg btn-primary">
+                                                <i class="align-middle" data-feather="delete"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+
                                 @endif
                                 
                             </div>
@@ -95,9 +99,12 @@
                         <hr class="my-0" />
                         <div class="card-body">
                             <h5 class="h6 card-title">Resbright Investments Employment Details</h5> 
-                            <p><b><h5>EC number:</h5></b> RB1237</p>
-                            <p><b><h5>Employment type:</h5></b> Contract</p>
-        
+                            <a  data-bs-toggle="modal" data-bs-target="#editEmploymentDetails">
+                                <i class="align-middle" data-feather="edit"></i> 
+                              </a>
+                            <p><b><h5>Company:</h5></b> {{$user->employment_detail->company}}</p>
+                            <p><b><h5>Position:</h5></b> {{$user->employment_detail->position}}</p>
+                            <p><b><h5>EC number:</h5></b> {{$user->employment_detail->ec_number}}</p>        
                         </div>
                     </div>
                 </div>
@@ -107,6 +114,67 @@
         </div>
     </div>
     
+    <!-- Edit Employment details modal start-->
+  <!-- Modal -->
+  <div class="modal fade" id="editEmploymentDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employment Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="{{ route('employments.update', $user->employment_detail->id)}}">
+                @csrf
+                @method('PUT')
+                <div class="mb-3">
+                    <label class="form-label">Company</label>
+                    <input class="form-control form-control-lg @error('company') is-invalid @enderror" type="text" name="company" value={{$user->employment_detail->name}} />
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">EC Number</label>
+                    <input class="form-control form-control-lg @error('ec_number') is-invalid @enderror" type="text" name="ec_number" value={{$user->employment_detail->ec_number}} />
+                    @error('ec_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Position</label>
+                    <input class="form-control form-control-lg @error('position') is-invalid @enderror" type="text" name="position" value={{$user->employment_detail->position}} />
+                    @error('position')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                </div>
+
+                <input type="hidden" id="user_id" name="user_id" value={{$user->id}}>
+
+
+                
+                <div class="text-center mt-3">
+                     {{-- <button type="submit" class="btn btn-lg btn-primary">Add</button> --}}
+                </div>
+            {{-- </form> --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-lg btn-primary">Add</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+                            <!-- edit Employment details modal end-->
 
     @include('layouts.scripts')
 </body>

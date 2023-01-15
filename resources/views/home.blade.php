@@ -28,7 +28,7 @@
                                     <div class="card-body text-center">
                                         <img src="{{asset('img/avatars/avatar.png')}}" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" />
                                         <h5 class="card-title mb-0">{{$user->name}} {{$user->surname}}</h5>
-                                        <div class="text-muted mb-2">Job Description</div>
+                                        <div class="text-muted mb-2">{{$user->employment_detail->position}}</div>
                                     </div>
                                     
                                     <hr class="my-0" />
@@ -36,13 +36,16 @@
                                         <h5 class="h6 card-title">About</h5>
                                         <ul class="list-unstyled mb-0">
                                             <li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Resident in <br> <a href="#">
-                                                <br>
+                                                <a  data-bs-toggle="modal" data-bs-target="#editContactDetails">
+                                                    <i class="align-middle" data-feather="edit-3"></i> 
+                                                </a> <br>
+                                               {{$user->contact->address1}} <br>
+                                               {{$user->contact->address2}} <br>
                                             </a></li>
-    
                                             <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <br><a href="#">
                                                 
                                             </a></li>
-                                            <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">Country</a></li>
+                                            <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">{{$user->contact->country}}</a></li>
                                         </ul>
                                     </div>
                                     <hr class="my-0" />
@@ -51,7 +54,7 @@
                                         <ul class="list-unstyled mb-0">
                                             <li class="mb-1"><span data-feather="phone" class="feather-sm me-1"></span> {{$user->mobile}} <br></li>
                                         </ul>
-                                        
+                        
                                         <ul class="list-unstyled mb-0">
                                             <li class="mb-1"><span data-feather="mail" class="feather-sm me-1"></span> {{$user->email}} <br></li>
                                         </ul>
@@ -116,6 +119,7 @@
 	</div>
 
     @include('layouts.scripts')
+    @include('layouts.home-modal') 
 </body>
 
 </html>

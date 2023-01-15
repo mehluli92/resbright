@@ -35,7 +35,7 @@ class RegisterMail extends Mailable
             return $this->subject('menokwsimt@gmail.com', 'Resbright Investments')
             ->view('emails.registration')->with('message', $this->infor);
        } catch (\Throwable $th) {
-            return back();
+            // return back();
        }
     }
 }

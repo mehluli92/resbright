@@ -45,7 +45,7 @@
             @endcan
             
             <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
+                <a class="sidebar-link" href="#">
       <i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Update Profile</span>
     </a>
             </li>

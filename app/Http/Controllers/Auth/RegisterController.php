@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\EmploymentDetails;
+use App\Contact;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,11 +82,22 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
 
+
         $infor = [
             'message' => 'Registration completed with success.',
         ];
 
         $user->save();
+
+        //save emploment values to avoid errors
+        $employment = new EmploymentDetails;
+        $employment->user_id = $user->id;
+        $employment->save();
+
+        //save contact details to avoid errors 
+        $contact = new Contact;
+        $contact->user_id = $user->id;
+        $contact->save();
 
         event(new UserRegistered($user->email, $user->mobile, $user->name, $infor['message']));
 
