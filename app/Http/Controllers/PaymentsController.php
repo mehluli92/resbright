@@ -108,6 +108,7 @@ class PaymentsController extends Controller
         $payment->save();
 
         $rb = $payment->rb_file;
+        //update payment on rb
         $user = $rb->user;
         
         $user = User::find($user->id);

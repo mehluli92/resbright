@@ -198,7 +198,6 @@
                             <b>Refference number:</b>  {{$rb->ref}} <br>
                             <b>Entry number:</b>       {{$rb->entry_number}} <br>
                             <b>Status:</b>               {{$rb->status->file_opened}} <br>
-                            <b>Paid:</b>                 {{$rb->payed}} <br>
                             <b>Supplier:</b>            {{$rb->supplier}} <br>
                             <b>Description:</b>         {{$rb->description}} <br>
                             <b>Bill of lading:</b>       {{$rb->bill_of_lading}} <br>
@@ -211,7 +210,26 @@
                             <b>Physical exam:</b>         {{$rb->physical_exam}} <br>
                             <b>Container:</b>         {{$rb->container}} <br>
                             <b>Recieved:</b>             {{$rb->recieved}} <br>
-                            
+                           <hr>
+                           <div class="text-center">
+                            <h4>Payment details</h4> 
+                           </div>
+                           <div class="row">
+                            <div class="col-4">
+                              <b>RTGS:</b> {{$rb->payment->rtgs_price}}
+                            </div>
+                            <div class="col-4">
+                              <b>USD:</b> {{$rb->payment->us_price}}
+                            </div>
+                           </div>
+                           <div class="row">
+                            <div class="col-4">
+                               <b>USD Duty:</b> {{$rb->payment->us_duty}}
+                            </div>
+                            <div class="col-4">
+                             <b> RTGS Duty:</b> {{$rb->payment->rtgs_duty}}
+                            </div>
+                           </div>
                         </div>
                        
                     </div>
@@ -469,7 +487,7 @@
   
                   <div class="mb-3">
                       <label class="form-label">US Duty</label>
-                      <input class="form-control form-control-lg @error('us_duty') is-invalid @enderror" type="number" step="0.01 name="us_duty" value={{$rb->payment->rtgs_duty}} />
+                      <input class="form-control form-control-lg @error('us_duty') is-invalid @enderror" type="number" step="0.01" name="us_duty" value={{$rb->payment->rtgs_duty}} />
                       @error('us_duty')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
@@ -479,7 +497,7 @@
 
                   <div class="mb-3">
                     <label class="form-label">RTGS Service Fee</label>
-                    <input class="form-control form-control-lg @error('rtgs_price') is-invalid @enderror" type="number" step="0.01 name="rtgs_price" value={{$rb->payment->rtgs_price}} />
+                    <input class="form-control form-control-lg @error('rtgs_price') is-invalid @enderror" type="number" step="0.01" name="rtgs_price" value={{$rb->payment->rtgs_price}} />
                     @error('rtgs_price')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -488,7 +506,7 @@
                 </div>
                 <div class="mb-3">
                   <label class="form-label">RTGS Duty</label>
-                  <input class="form-control form-control-lg @error('rtgs_duty') is-invalid @enderror" type="number" step="0.01 name="rtgs_duty" value={{$rb->payment->rtgs_duty}} />
+                  <input class="form-control form-control-lg @error('rtgs_duty') is-invalid @enderror" type="number" step="0.01" name="rtgs_duty" value={{$rb->payment->rtgs_duty}} />
                   @error('rtgs_duty')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
