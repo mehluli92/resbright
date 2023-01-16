@@ -57,11 +57,15 @@ class HomeController extends Controller
 
         $unprocessed_rb = DB::table('statuses')->where('goods_delivered', null)->count(); 
 
+        $user = Auth::user();
+
+
         return view('dashboard')->with('usd_total',$usd_total)
                                 ->with('rtgs_total',$rtgs_total)
                                 ->with('rtgs_duty_total', $rtgs_duty_total)
                                 ->with('us_duty_total', $us_duty_total)
                                 ->with('total_users', $total_users)
-                                ->with('unprocessed_rb', $unprocessed_rb);
+                                ->with('unprocessed_rb', $unprocessed_rb)
+                                ->with('user', $user);
     }
 }

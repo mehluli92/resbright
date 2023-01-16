@@ -14,6 +14,7 @@ use App\Events\Acquital;
 use App\Events\Dispatched;
 use App\Events\Delivered;
 use App\Events\Closed;
+use Illuminate\Support\Facades\Auth;
 
 
 class SatusController extends Controller
@@ -133,7 +134,6 @@ class SatusController extends Controller
         $status->save();
         //send messages for each stat
         
-
         return redirect()->route('rbfiles.all');
     }
 }

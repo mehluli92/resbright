@@ -36,7 +36,9 @@ class RbFileController extends Controller
      */
     public function create()
     {
-        return view('rbfiles.create');
+        $user = Auth::user();
+
+        return view('rbfiles.create')->with('user', $user);
     }
 
     /**
@@ -103,7 +105,10 @@ class RbFileController extends Controller
     public function show($id)
     {
         $rb = RbFile::find($id);
-        return view('rbfiles.show')->with('rb', $rb);
+        $user = Auth::user();
+
+        return view('rbfiles.show')->with('rb', $rb)
+                                    ->with('user', $user);
     }
 
     /**
@@ -115,7 +120,10 @@ class RbFileController extends Controller
     public function edit($id)
     {
         $rb = RbFile::find($id);
-        return view('rbfiles.update')->with('rb', $rb);
+        $user = Auth::user();
+
+        return view('rbfiles.update')->with('rb', $rb)
+                                     ->with('user', $user);
     }
 
     /**
@@ -299,7 +307,10 @@ class RbFileController extends Controller
 
         event(new RbFileCreated($details));
 
-        return view('rbfiles.show')->with('rb', $rb);
+        $user = Auth::user();
+
+        return view('rbfiles.show')->with('rb', $rb)
+                                    ->with('user', $user);
     }
 
     /**
@@ -312,13 +323,19 @@ class RbFileController extends Controller
     {
         $rb = RbFile::find($id);
         $rb->delete();
-        return view('home')->with('rbs', $rbs);
+        $user = Auth::user();
+
+        return view('home')->with('rbs', $rbs)
+                            ->with('user', $user);
     }
 
     public function showAll()
     {
         $rbs = RbFile::all();
-        return view('rbfiles.index')->with('rbs', $rbs);
+        $user = Auth::user();
+
+        return view('rbfiles.index')->with('rbs', $rbs)
+                                    ->with('user', $user);
     }
 
     public function status(Request $request, $id)
@@ -346,7 +363,10 @@ class RbFileController extends Controller
             ->orWhere('description', 'LIKE', "%{$supplier}%")
             ->get();
         
-        return back()->with('rbs', $rbs);
+            $user = Auth::user();
+
+        return back()->with('rbs', $rbs)
+                      ->with('user', $user);
     }
 
    

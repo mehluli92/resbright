@@ -17,7 +17,10 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        return view('roles.index')->with('roles', $roles);
+        $user = Auth::user();
+
+        return view('roles.index')->with('roles', $roles)
+                                    ->with('user', $user);
     }
 
     /**
@@ -27,7 +30,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $user = Auth::user();
+
+        return view('roles.create')->with('user', $user);
     }
 
     /**
@@ -49,8 +54,10 @@ class RoleController extends Controller
         $role->description = $request->description;
 
         $role->save();
+        $user = Auth::user();
 
-        return redirect('/roles')->with('success', 'Role saved');
+        return redirect('/roles')->with('success', 'Role saved')
+                                  ->with('user', $user);
     }
 
     /**
@@ -73,7 +80,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::find($id);
-        return view('roles.edit')->with('role', $role);
+        return view('roles.edit')->with('role', $role)
+                                 ->with('user', $user);
                                 
     }
 
@@ -98,7 +106,10 @@ class RoleController extends Controller
 
         $role->save();
 
-        return redirect('/roles')->with('success', 'Role updated with success');
+        $user = Auth::user();
+
+        return redirect('/roles')->with('success', 'Role updated with success') 
+                                  ->with('user',  $user);
     }
 
     /**
@@ -111,7 +122,9 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $role->delete();
+        $user = Auth::user();
 
-        return redirect('/roles')->with('success', 'Role deleted with success');
+        return redirect('/roles')->with('success', 'Role deleted with success')
+                                  ->with('user', $user);
     }
 }

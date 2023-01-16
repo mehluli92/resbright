@@ -8,6 +8,8 @@ use App\Contact;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Events\UserRegistered;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -19,7 +21,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index')->with('users', $users);
+        $user = Auth::user();
+
+        return view('users.index')->with('users', $users)
+                                    ->with('user', $user);
     }
 
     /**
@@ -29,7 +34,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $user = Auth::user();
+
+        return view('users.create')->with('user', $user);
     }
 
     /**
@@ -120,7 +127,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('users.index');
+        $user = Auth::user();
+
+        return redirect()->route('users.index')->with('user', $user);
     }
 
     public function search(Request $request)

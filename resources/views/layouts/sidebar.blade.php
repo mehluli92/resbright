@@ -3,19 +3,22 @@
         <a class="sidebar-brand" href="{{route('home')}}">
   <span class="align-middle">Resbright Portal</span>
 </a>
-        @can('superadmin')
+        @if ($user->role === 1)
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="{{route('dashboard')}}">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Admin Dashboard</span>
                 </a>
             </li>
-        @elsecan('admin')
+        @endif
+
+        @if ($user->role === 2)
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="{{route('dashboard')}}">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Admin Dashboard</span>
                 </a>
             </li>
-        @endcan
+        @endif
+        
 
         <ul class="sidebar-nav">
             <li class="sidebar-header">
@@ -28,21 +31,26 @@
             </a>
             </li>
 
-            @can('superadmin')
+            @if ($user->role === 3)
+                
+            @else
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('users.index')}}">
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">All Users</span>
                     </a>
                 </li>
-            @endcan
-            
-            @can('superadmin')
+            @endif
+                
+            @if ($user->role === 3)
+                
+            @else
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('roles.index')}}">
                     <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Role Management</span>
                     </a>
                 </li>
-            @endcan
+            @endif
+        
             
             <li class="sidebar-item">
                 <a class="sidebar-link" href="#">
@@ -50,7 +58,7 @@
     </a>
             </li>
  <!-- Customs clearence start-->
-          @can('superadmin')
+          @if($user->role === 1)
             <li class="sidebar-header">
                 Customs Clearence
             </li>
@@ -84,7 +92,7 @@
                 <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Bill of Lading</span>
                 </a>
             </li>
-          @elsecan('admin')
+          @elseif($user->role === 2)
                 <li class="sidebar-header">
                     Customs Clearence
                 </li>
@@ -118,7 +126,7 @@
                     <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Bill of Lading</span>
                     </a>
                 </li>
-          @endcan
+          @endif
  <!-- Customs clearence end-->
 
             <li class="sidebar-header">

@@ -8,6 +8,7 @@ use App\User;
 use Mail;
 use App\Mail\MailNotify;
 use App\Events\PaymentMade;
+use Illuminate\Support\Facades\Auth;
 
 //manually add payments to the system in case someone pays in cash
 class PaymentsController extends Controller
@@ -57,8 +58,11 @@ class PaymentsController extends Controller
         $payment->save();
 
         $rb = $payment->rb_file();
+        $user = Auth::user();
+
        //return to previous page
-       return view('rbfiles.show')->with('rb', $rb);
+       return view('rbfiles.show')->with('rb', $rb)
+                                    ->with('user', $user);
         
     }
 
@@ -121,8 +125,11 @@ class PaymentsController extends Controller
         //start payment event
         event(new PaymentMade($user->name, $user->email, $user->mobile, $message1, $message2, $rb->ref));
 
+        $user = Auth::user();
+
        //return to previous page
-       return view('rbfiles.show')->with('rb', $rb);
+       return view('rbfiles.show')->with('rb', $rb)
+                                    ->with('user', $user);
     }
 
     /**
