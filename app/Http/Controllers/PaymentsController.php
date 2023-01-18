@@ -119,8 +119,8 @@ class PaymentsController extends Controller
         $r = $payment->rtgs_price + $payment->rtgs_duty;
         $u = $payment->us_price + $payment->us_duty;
 
-        $message1 = "RTGS Payment Recieved total"." ".$r;
-        $message2 = "USD Payment Recieved total"." ".$u;
+        $message1 = "RTGS Payment Recieved total"." "."ZWL".$r;
+        $message2 = "USD Payment Recieved total"." "."$".$u;
 
         //start payment event
         event(new PaymentMade($user->name, $user->email, $user->mobile, $message1, $message2, $rb->ref));

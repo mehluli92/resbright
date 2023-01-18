@@ -2,8 +2,9 @@
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="{{route('home')}}">
   <span class="align-middle">Resbright Portal</span>
-</a>
-        @if ($user->role === 1)
+</a> 
+<!--{{$user}}-->
+        @if ($user->role == 1)
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="{{route('dashboard')}}">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Admin Dashboard</span>
@@ -11,7 +12,7 @@
             </li>
         @endif
 
-        @if ($user->role === 2)
+        @if ($user->role == 2)
             <li class="sidebar-item active">
                 <a class="sidebar-link" href="{{route('dashboard')}}">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Admin Dashboard</span>
@@ -31,7 +32,7 @@
             </a>
             </li>
 
-            @if ($user->role === 3)
+            @if ($user->role == 3)
                 
             @else
                 <li class="sidebar-item">
@@ -41,7 +42,7 @@
                 </li>
             @endif
                 
-            @if ($user->role === 3)
+            @if ($user->role == 3)
                 
             @else
                 <li class="sidebar-item">
@@ -58,41 +59,12 @@
     </a>
             </li>
  <!-- Customs clearence start-->
-          @if($user->role === 1)
-            <li class="sidebar-header">
-                Customs Clearence
-            </li>
+          @if($user->role == 3)
+            
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="{{route('rbfiles.all')}}">
-                <i class="align-middle" data-feather="square"></i> <span class="align-middle">RB Files</span>
-                </a>
-            </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="corner-right-down"></i> <span class="align-middle">Imports</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="corner-right-up"></i> <span class="align-middle">Exports</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Airway Bills</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Bill of Lading</span>
-                </a>
-            </li>
-          @elseif($user->role === 2)
+           
+          @else
                 <li class="sidebar-header">
                     Customs Clearence
                 </li>

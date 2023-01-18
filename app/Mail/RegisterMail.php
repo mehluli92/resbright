@@ -32,7 +32,7 @@ class RegisterMail extends Mailable
     public function build()
     {
        try {
-            return $this->subject('menokwsimt@gmail.com', 'Resbright Investments')
+            return $this->subject('Resbright Investments Notification', 'Resbright Investments')
             ->view('emails.registration')->with('message', $this->infor);
        } catch (\Throwable $th) {
             // return back();

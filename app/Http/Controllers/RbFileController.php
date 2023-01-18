@@ -279,14 +279,16 @@ class RbFileController extends Controller
         if ($request->us_duty === null)
         {
             //duty is in rtgs and everything else
-            $duty = $rb->price->rtgs_duty;
-            $price = $rb->price->rtgs_price;
-            $total = $duty + $price;
+            $duty = "ZWL".$rb->price->rtgs_duty;
+            $price = "ZWL".$rb->price->rtgs_price;
+            $total = $rb->price->rtgs_duty + $rb->price->rtgs_price;
+            $total = "ZWL".$total;
         } else{
             //duty is in usd and everything else
-            $duty = $rb->price->us_duty;
-            $price = $rb->price->us_price;
-            $total = $duty + $price;
+            $duty = "$".$rb->price->us_duty;
+            $price = "$".$rb->price->us_price;
+            $total = $rb->price->us_duty + $rb->price->us_price;
+            $total = "$".$total;
         }
         
 
@@ -297,18 +299,19 @@ class RbFileController extends Controller
             'until' => $rb->price->created_at,
             'name' => $user->name,
             'surname' => $user->surname,
+            'ref' => $rb->ref,
             'address1' => $rb->destination->address1,
             'address2' => $rb->destination->address2,
             'country' =>  $rb->destination->country,
             'duty'  =>     $duty,
-            'storage_fee' => $price,
+            'service_fee' => $price,
             'total' => $total,
         ];
 
         event(new RbFileCreated($details));
 
         $user = Auth::user();
-
+    
         return view('rbfiles.show')->with('rb', $rb)
                                     ->with('user', $user);
     }
@@ -331,7 +334,7 @@ class RbFileController extends Controller
 
     public function showAll()
     {
-        $rbs = RbFile::all();
+        $rbs = RbFile::paginate(5);
         $user = Auth::user();
 
         return view('rbfiles.index')->with('rbs', $rbs)
@@ -355,13 +358,15 @@ class RbFileController extends Controller
     public function search(Request $request)
     {
          // Get the search value from the request
-        $supplier = $request->input('supplier');
+        // $supplier = $request->input('supplier');
+        $ref = $request->input('ref');
 
         // Search in the title and body columns from the posts table
-        $rbs = RbFile::query()
-            ->where('supplier', 'LIKE', "%{$supplier}%")
-            ->orWhere('description', 'LIKE', "%{$supplier}%")
-            ->get();
+        $rbs = RbFile::where('ref', $ref )
+                ->get();
+            // ->where('supplier', 'LIKE', "%{$supplier}%")
+            // ->orWhere('ref', 'LIKE', "%{$ref}%")
+            // ->get();
         
             $user = Auth::user();
 

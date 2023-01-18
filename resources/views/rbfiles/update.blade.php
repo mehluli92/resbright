@@ -26,6 +26,7 @@
         <div class="card col-8">
             <div class="card-hearder">
                 <h2>Respond to RB File for {{$rb->user->name}} {{$rb->user->surname}}.</h2>
+                  <a href="{{route('rbfiles.download', $rb->document)}}" class="">Download</a>
                 <div class="float-end align-items-end">
                     <a href="{{route('rbfiles.index')}}" class="btn btn-sm btn-secondary">View all Rb Files.</a>
                 </div>
@@ -37,7 +38,7 @@
                         @csrf
                         @method('PUT')
                         <div class="text-center">
-                            <h3>Item Details.</h3>
+                            <h2>Item Details.</h2>
                           </div>
 
                        <div class="form-check form-check-inline">
@@ -86,10 +87,11 @@
                                 <h2>Charges and tarrifs.</h2>
                             </div>
                             
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="currency"></label>
                                 <select class="form-select" aria-label="Default select example" name="currency">
                                     <option selected>Select Currency of Goods value</option>
+                                    <option value="rtgs">usd</option>
                                     <option value="rtgs">RTGS</option>
                                     <option value="rands">rands</option>
                                     <option value="pula">pula</option>
@@ -101,7 +103,7 @@
 
                                   </select>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label class="form-label ">Goods value: 0</label>
                                 <input class="form-control" type="number" name="value" value=0 step="0.01"  >
                             </div>
@@ -112,31 +114,34 @@
                                 <label class="form-label ">Tarrif: </label>
                                 <input class="form-control" type="number" name="tarrif" value={{$rb->tarrif}} step="0.01"  >
                             </div>
-                            <div class="col-4">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
                                 <label class="form-label ">USD Duty: </label>
                                 <input class="form-control" type="number" name="us_duty" value={{$rb->us_duty}} step="0.01"  >
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label class="form-label ">RTGS Duty: </label>
                                 <input class="form-control" type="number" name="rtgs_duty" value={{$rb->rtgs_duty}} step="0.01"  >
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label class="form-label ">USD Service fee: </label>
                                 <input class="form-control" type="number" name="us_price" value={{$rb->us_duty}} step="0.01"  >
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label class="form-label ">RTGS Service fee: </label>
                                 <input class="form-control" type="number" name="rtgs_price" value={{$rb->rtgs_duty}} step="0.01"  >
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label class="form-label">Weight</label>
                                 <input class="form-control" type="number" name="weight" value={{$rb->weight}} step="0.01" min="0" >
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label class="form-label ">Number of Boxes</label>
                                 <input class="form-control" type="number" name="quantity_of_boxes" value={{$rb->weight}}  min="1" >
                             </div>

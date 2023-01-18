@@ -54,7 +54,7 @@
                                             </span>
                                         @enderror
 											<small>
-          <a href="index.html">Forgot password?</a> <br>
+          <a href="#">Forgot password?</a> <br>
           <a href="{{ route('register') }}">Or create new account.</a>
           </small>
 										</div>
@@ -72,7 +72,13 @@
                                             </button>
 										</div>
 									</form>
-								</div>
+							<p class="text-sm">
+							    							Powered by: <a href="http://menokws.co.zw">
+		    <i>Menokws Private Business Corporation</i>
+		</a>
+				
+							</p>		
+							</div>
 							</div>
 						</div>
 
@@ -81,6 +87,9 @@
 			</div>
 		</div>
 	</main>
+	<footer>
+	    
+	</footer>
 </body>
 
 </html>

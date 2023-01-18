@@ -60,14 +60,17 @@ class ReceiptMail extends Mailable
                 $pdf = PDF::loadView('emails.reciept', $details);
                 $fileName = time().'.'.'pdf'; 
         
-               try {
-                    Mail::send('emails.paymentTemplates', $details, function($message)use($details, $pdf) {
-                        $message->to($details["email"], $details["email"])
-                                ->subject($details["mobile"]) 
-                                ->attachData($pdf->output(), "reciept.pdf");
-                    });
-                } catch (\Throwable $th) {
-                    dd('network error');
-                }
+            //   try {
+            //         Mail::send('emails.paymentTemplates', $details, function($message)use($details, $pdf) {
+            //             $message->to($details["email"], $details["email"])
+            //                     ->subject($details["mobile"]) 
+            //                     ->attachData($pdf->output(), "reciept.pdf");
+            //         });
+            //     } catch (\Throwable $th) {
+            //         // dd('network error');
+            //     }
+            
+            return $this->view('emails.paymentTemplates')
+                    ->attachData($pdf->output(), "reciept.pdf");
     }
 }

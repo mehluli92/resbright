@@ -44,15 +44,15 @@
                                     
                                 @else
 
-                                    @can('superadmin')
-                                        <form method="POST" action="{{ route('users.destroy', $user->contact->id)}}">
+                                    @if($auth_user->role == 1)
+                                        <form method="POST" action="{{ route('users.destroy', $user->id)}}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-lg btn-primary">
                                                 <i class="align-middle" data-feather="delete"></i>
                                             </button>
                                         </form>
-                                    @endcan
+                                    @endif
 
                                 @endif
                                 
@@ -90,7 +90,7 @@
                                     <a href="#">
                                         {{$user->contact->address1}} <br>
                                         {{$user->contact->address2}}</a></li>
-                                <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <a href="#">Menokws</a></li>
+                                <li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span> Works at <a href="#"> {{$user->employment_detail->company}}</a></li>
                                 <li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span> From <a href="#">{{$user->contact->country}}</a></li>
                             </ul>
                             @endif
@@ -98,7 +98,7 @@
                         </div>
                         <hr class="my-0" />
                         <div class="card-body">
-                            <h5 class="h6 card-title">Resbright Investments Employment Details</h5> 
+                            <h5 class="h6 card-title"> Employment Details</h5> 
                             <a  data-bs-toggle="modal" data-bs-target="#editEmploymentDetails">
                                 <i class="align-middle" data-feather="edit"></i> 
                               </a>

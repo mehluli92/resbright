@@ -12,6 +12,8 @@
                     <div class="row">
                         <div class="text-center lh-1">
                             {{-- <img src="{{asset('img/icons/resbright.jpg')}}" style="width:40px;height:40px;"> --}}
+                                
+
                             <p class="text text-danger fw-bold fst-italic"> 
                                         International Air, Ocean Freight Forwarding, Customs Clearence, 
                                         Road Freight Consolidations, Customs Consultancy.   
@@ -24,7 +26,7 @@
                             </p>     
                         </div>
                     </div>
-                    <br> <br>
+                    <br> <br> <br> <br>
                     <div class="row" style="background-color: cadetblue">
                         <div class="col-2"></div>
                         <div class="col-4 fw-bold ">
@@ -52,7 +54,7 @@
                         </div>
                         <div class="col-1"></div>
                         
-                    </div> <br> <br> <br>
+                    </div> <br> <br> <br> <br> <br>
                     <h3>Thank you for your business!</h3>
                     
                   </div>

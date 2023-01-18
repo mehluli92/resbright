@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Payment;
 use App\User;
+use Response;
+use File;
 use App\RbFile;
 class HomeController extends Controller
 {
@@ -67,5 +69,12 @@ class HomeController extends Controller
                                 ->with('total_users', $total_users)
                                 ->with('unprocessed_rb', $unprocessed_rb)
                                 ->with('user', $user);
+    }
+    
+    public function getDownload($name){
+
+        $file = public_path()."/uploads/".$name;
+        $headers = array('Content-Type: application/pdf',);
+        return Response::download($file, 'info.pdf',$headers);
     }
 }

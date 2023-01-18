@@ -37,16 +37,18 @@ class QuotationMail extends Mailable
         $pdf = PDF::loadView('emails.quotation', $pdfDetails);
         $fileName = time().'.'.'pdf'; 
 
-       try {
-            Mail::send('emails.paymentTemplates', $pdfDetails, function($message)use($pdfDetails, $pdf) {
-                $message->to($pdfDetails["email"], $pdfDetails["email"])
-                        ->subject($pdfDetails["invoice"]) 
-                        ->attachData($pdf->output(), "quotation.pdf");
-            });
+    //   try {
+    //         Mail::send('emails.paymentTemplates', $pdfDetails, function($message)use($pdfDetails, $pdf) {
+    //             $message->to($pdfDetails["email"], $pdfDetails["email"])
+    //                     ->subject($pdfDetails["invoice"]) 
+    //                     ->attachData($pdf->output(), "quotation.pdf");
+    //         });
 
-       } catch (\Throwable $th) {
-        dd('network error');
-       }
-       
+    //   } catch (\Throwable $th) {
+    //     // dd('network error');
+    //   }
+       return $this->view('emails.quoteTemplate')
+                    
+                    ->attachData($pdf->output(), "quotation.pdf");
     }
 }

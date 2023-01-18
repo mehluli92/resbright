@@ -65,8 +65,8 @@
                                     <td>{{$duty}}</td>
                                   </tr>
                                   <tr>
-                                    <td>Storage</td>
-                                    <td>{{$storage_fee}}</td>
+                                    <td>Service Fee</td>
+                                    <td>{{$service_fee}}</td>
                                   </tr>
                                   <tr>
                                     <td>Total</td>
@@ -120,11 +120,7 @@
                             </b>
                         </i>
                     </p>
-                    {{-- <p class="text-center">
-                        <b>Email:</b>   <br>
-                        <b>Tel:</b> 0242 575857 <br>
-                        <b>Cell:</b> 
-                    </p> --}}
+                    
                   </div>
                
 	

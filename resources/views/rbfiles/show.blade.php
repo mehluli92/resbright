@@ -37,7 +37,7 @@
 
                             <ul class="progress-tracker progress-tracker--text">
 
-                              @if ($rb->status->file_opened === 1)
+                              @if ($rb->status->file_opened == 1)
                               <li class="progress-step is-complete">
                                 <div class="progress-marker"></div>
                                 <div class="progress-text progress-text--dotted progress-text--dotted-1">
@@ -55,7 +55,7 @@
                               </li>
                               @endif
                                 
-                              @if ($rb->status->duty_paid === 1)
+                              @if ($rb->status->duty_paid == 1)
                               <li class="progress-step is-complete">
                                 <div class="progress-marker"></div>
                                 <div class="progress-text progress-text--dotted progress-text--dotted-2">
@@ -73,7 +73,7 @@
                               </li> 
                               @endif
                                 
-                              @if ($rb->status->entry_submitted)
+                              @if ($rb->status->entry_submitted == 1)
                               <li class="progress-step is-active" aria-current="step">
                                 <div class="progress-marker"></div>
                                 <div class="progress-text progress-text--dotted progress-text--dotted-3">
@@ -91,7 +91,7 @@
                               </li>
                               @endif
                       
-                              @if ($rb->status->pe_conducted)
+                              @if ($rb->status->pe_conducted == 1)
                                 <li class="progress-step is-active">
                                   <div class="progress-marker"></div>
                                   <div class="progress-text progress-text--dotted progress-text--dotted-4">
@@ -109,7 +109,7 @@
                               </li>
                               @endif
                       
-                              @if ($rb->status->entry_released === 1)
+                              @if ($rb->status->entry_released == 1)
                                 <li class="progress-step is-active">
                                   <div class="progress-marker"></div>
                                   <div class="progress-text progress-text--dotted progress-text--dotted-5">
@@ -127,7 +127,7 @@
                                 </li>
                               @endif
                                 
-                              @if ($rb->status->entry_dispached === 1)
+                              @if ($rb->status->entry_dispached == 1)
                                 <li class="progress-step is-active">
                                   <div class="progress-marker"></div>
                                   <div class="progress-text progress-text--dotted progress-text--dotted-6">
@@ -145,7 +145,7 @@
                                 </li>
                               @endif
                                 
-                              @if ($rb->status->goods_delivered === 1)
+                              @if ($rb->status->goods_delivered == 1)
                                 <li class="progress-step is-active">
                                   <div class="progress-marker"></div>
                                   <div class="progress-text progress-text--dotted progress-text--dotted-7">
@@ -163,7 +163,7 @@
                                 </li>
                               @endif
                                 
-                              @if ($rb->status->file_closed)
+                              @if ($rb->status->file_closed == 1)
                                 <li class="progress-step is-active">
                                   <div class="progress-marker"></div>
                                   <div class="progress-text progress-text--dotted progress-text--dotted-8">
@@ -234,9 +234,9 @@
                        
                     </div>
                 </div>
-
+            
                <!--status updates start-->
-               @can('superadmin')
+               @if($user->role == 1)
                   <div class="card">
                     <div class="card-header">
                       <div class="text-center">
@@ -341,7 +341,7 @@
                       </div>
                     </div>
                   </div>
-               @elsecan('admin')
+               @elseif($user->role == 2)
                   <div class="card">
                     <div class="card-header">
                       <div class="text-center">
@@ -446,7 +446,7 @@
                       </div>
                     </div>
                   </div>
-               @endcan
+               @endif
                <!-- status updates ende-->
             </div>    
 		</div>

@@ -52,6 +52,8 @@ Route::resource('rbfiles', RbFileController::class)->middleware('auth');
 Route::get('/all-rbfiles', 'RbFileController@showAll')->name('rbfiles.all');
 Route::put('/status-rbfiles/{rbfile}', 'RbFileController@status')->name('rbfiles.status');
 Route::get('search-rbfiles', 'UserController@search')->name('rbfiles.search')->middleware('auth'); 
+Route::get('/download/{name}', 'HomeController@getDownload')->name('rbfiles.download')->middleware('auth'); 
+
 
 
 //Destination

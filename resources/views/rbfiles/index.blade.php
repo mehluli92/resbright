@@ -27,8 +27,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
-                            <input class="form-control"  type="text" name="supplier" placeholder="supplier" required/>
+                            <input class="form-control"  type="text" name="ref" placeholder="RB1" required/>
                         </div>
+                        <!--<div class="col-3">-->
+                        <!--    <input class="form-control"  type="text" name="supplier" placeholder="supplier" required/>-->
+                        <!--</div>-->
                         <div class="col-2">
                             <button type="submit" class="btn btn-primary">Search</button>
 
@@ -89,6 +92,10 @@
 
                                     </tr>
                                     @endforeach
+                                </tbody>
+                            </table>
+                                {!! $rbs->links() !!}
+
                         </div>
                         
                     </div>

@@ -68,15 +68,19 @@
     
                                         <h5 class="card-title mb-0">RB Files</h5>
                                         <small class="float-end align-items-end">
-                                            <a href="{{route('rbfiles.create')}}" class="btn btn-sm btn-dark">Create</a>
+                                            <a href="{{route('rbfiles.create')}}" class="btn btn-sm btn-dark">Initiate File</a>
                                         </small>
                                     </div>
                                     <div class="card-body h-100">
                                         <div class="d-flex align-items-start">
-                                            @if (count($user->rb_files) === null)
-                                            <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Go to create and fill out the form. You will recieve an email with further information.">
-                                                check out the steps to create a file on our platform
-                                            </button>
+                                            @if (count($user->rb_files) == null)
+                                            <p>
+                                                To get your import custom clearence and delivery. <br>
+                                                1. Go to Initiate file click button on top right corner. <br>
+                                                2. Submit Airway bill or Bill of lading pdf document or scaned document.<br>
+                                                3. Login to track your file progress from time-to-time or sit and wait for email notifications.
+                                                <br>
+                                            </p>
                                                 
                                             @else
                                             @foreach ($user->rb_files as $rb)
@@ -86,9 +90,9 @@
                                             <div class="flex-grow-1">
                                                 <small class="float-end text-navy">
                                                     <a class="badge bg-secondary text-white ms-2" href="#">
-                                                        @if ($rb->status->file_opened === 1 && $rb->status->file_opened === 0)
+                                                        @if($rb->status->file_opened == 1 && $rb->status->file_opened == 0)
                                                             opened
-                                                        @else
+                                                        @elseif($rb->status->file_opened == 1 && $rb->status->file_opened == 1)
                                                             closed
                                                         @endif
                                                     {{-- {{$rb->status->file_opened}} --}}
@@ -103,7 +107,7 @@
                                         <hr />
                                             @endforeach
                                             @endif
-                                            
+                                            <br>
                                         <div class="d-grid">
                                             <a href="#" class="btn btn-primary">Load more</a>
                                         </div>

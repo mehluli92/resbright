@@ -4,10 +4,10 @@
     <title>Resbright Investments</title>
 </head>
 <body>
-    Dear  
+    Dear  {{$infor->name}}
 
     <p>
-        File number  has been released.
+       Your payment for {{$infor->ref}} has been recieved.
     </p> 
    
     <p>Sincerely,</p>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Contact;
+use App\EmploymentDetails;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Events\UserRegistered;
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         $user = Auth::user();
 
         return view('users.index')->with('users', $users)
@@ -58,8 +59,18 @@ class UserController extends Controller
         $user->password = Hash::make($request->mobile);
 
         $user->save();
+        
+         //save emploment values to avoid errors
+        $employment = new EmploymentDetails;
+        $employment->user_id = $user->id;
+        $employment->save();
 
-        $message = "You have been registered on Resbright portal with success";
+        //save contact details to avoid errors 
+        $contact = new Contact;
+        $contact->user_id = $user->id;
+        $contact->save();
+
+        $message = "You have been registered on Resbright portal with success. Go to www.resbright-portal.com . Use your email and mobile number starting with as password";
 
         event(new UserRegistered($user->email, $user->mobile, $user->name, $message));
         
@@ -79,9 +90,12 @@ class UserController extends Controller
         $contact = Contact::where('user_id', $id)->latest()->get();
 
         $roles = Role::all();
+        
+        $auth_user = Auth::user();
         return view('users.show')->with('user', $user)
                                  ->with('contact',$contact)
-                                 ->with('roles', $roles); 
+                                 ->with('roles', $roles)
+                                 ->with('auth_user', $auth_user); 
     }
 
     /**
@@ -138,10 +152,10 @@ class UserController extends Controller
         $mobile = $request->input('mobile');
 
         // Search in the title and body columns from the posts table
-        $user = User::query()
-            ->where('email', 'LIKE', "%{$mobile}%")
+        $users = User::query()
+            ->where('mobile', 'LIKE', "%{$mobile}%")
             ->get();
         
-        return back()->with('user', $user);
+        return back()->with('users', $users);
     }
 }
