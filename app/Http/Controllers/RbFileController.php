@@ -52,15 +52,22 @@ class RbFileController extends Controller
         $request->validate([
             'importer'=>'required',
             'document'=>'required|mimes:pdf,xlx,csv|max:2048',
+            'invoice' => 'required|mimes:pdf,xlx,csv|max:2048',
         ]);
 
+        //deal with the document
         $fileName = time().'.'.$request->document->extension(); 
         $request->document->move(public_path('uploads'), $fileName);
+        
+        //deal with invoice fiel
+        $invoiceName = time().'.invoice'.'.'.$request->invoice->extension();
+         $request->invoice->move(public_path('uploads'), $invoiceName);
 
         $rb = new RbFile;
 
         $rb->importer =  $request->importer;
         $rb->document = $fileName;
+        $rb->invoice = $invoiceName;
 
         if($request->user !== null )
         {

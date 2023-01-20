@@ -65,7 +65,7 @@
                                             <a  href="{{route('users.show', $user->id)}}">
                                                 <i class="align-middle" data-feather="search"></i> 
                                             </a>
-                                            <a  href="#" class="btn btn-sm btn-secondary">
+                                            <a  href="{{route('home.user', $user->id)}}" class="btn btn-sm btn-secondary">
                                                 All Files 
                                             </a>
                                             <a class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addFile" href="">

@@ -12,7 +12,7 @@ class RbFile extends Model
     protected $fillable = [
         'document','ref', 'entry_number','import', 'supplier', 'description',
         'bill_of_lading', 'tarrif', 'weight','quantity_of_boxes', 
-         'manifest','container', 'importer', 
+         'manifest','container', 'importer', 'invoice',
     ];
 
     //user relationship

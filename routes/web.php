@@ -35,6 +35,9 @@ Route::get('/dashboard', 'HomeController@admin')->name('dashboard')->middleware(
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+//get user RbFiles from users page
+Route::get('/home/{user_id}', 'HomeController@userRbfiles')->name('home.user')->middleware('auth');
+
 
 Route::Resource('roles', 'RoleController')->middleware('auth');
 //user management
@@ -53,6 +56,7 @@ Route::get('/all-rbfiles', 'RbFileController@showAll')->name('rbfiles.all');
 Route::put('/status-rbfiles/{rbfile}', 'RbFileController@status')->name('rbfiles.status');
 Route::get('search-rbfiles', 'UserController@search')->name('rbfiles.search')->middleware('auth'); 
 Route::get('/download/{name}', 'HomeController@getDownload')->name('rbfiles.download')->middleware('auth'); 
+Route::get('/invoice-download/{name}', 'HomeController@getInvoice')->name('invoice.download')->middleware('auth'); 
 
 
 

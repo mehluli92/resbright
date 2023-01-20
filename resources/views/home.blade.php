@@ -90,9 +90,9 @@
                                             <div class="flex-grow-1">
                                                 <small class="float-end text-navy">
                                                     <a class="badge bg-secondary text-white ms-2" href="#">
-                                                        @if($rb->status->file_opened == 1 && $rb->status->file_opened == 0)
+                                                        @if($rb->status->file_opened == 1 && $rb->status->file_closed == 0)
                                                             opened
-                                                        @elseif($rb->status->file_opened == 1 && $rb->status->file_opened == 1)
+                                                        @elseif($rb->status->file_opened == 1 && $rb->status->file_closed == 1)
                                                             closed
                                                         @endif
                                                     {{-- {{$rb->status->file_opened}} --}}

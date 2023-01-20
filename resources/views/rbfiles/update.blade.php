@@ -26,7 +26,8 @@
         <div class="card col-8">
             <div class="card-hearder">
                 <h2>Respond to RB File for {{$rb->user->name}} {{$rb->user->surname}}.</h2>
-                  <a href="{{route('rbfiles.download', $rb->document)}}" class="">Download</a>
+                  <a href="{{route('rbfiles.download', $rb->document)}}" class="">Download BOL</a>
+                   <a href="{{route('invoice.download', $rb->invoice)}}" class="">Download Invoice</a>
                 <div class="float-end align-items-end">
                     <a href="{{route('rbfiles.index')}}" class="btn btn-sm btn-secondary">View all Rb Files.</a>
                 </div>

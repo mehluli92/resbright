@@ -77,4 +77,17 @@ class HomeController extends Controller
         $headers = array('Content-Type: application/pdf',);
         return Response::download($file, 'info.pdf',$headers);
     }
+    
+     public function getInvoice($name){
+
+        $file = public_path()."/uploads/".$name;
+        $headers = array('Content-Type: application/pdf',);
+        return Response::download($file, 'invoice.pdf',$headers);
+    }
+    
+    public function userRbfiles($user_id)
+    {
+        $user = User::find($user_id);
+        return view('home')->with('user', $user);
+    }
 }

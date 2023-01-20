@@ -46,6 +46,9 @@
 
                         <label for="document">Select a file:</label>
                         <input class="form-control" type="file" id="document" name="document">
+                        
+                        <label for="invoice">Select invoice:</label>
+                        <input class="form-control" type="file" id="invoice" name="invoice">
                          
                         <div class="text-center mt-3">
                              <button type="submit" class="btn btn-lg btn-primary">Submit</button>
