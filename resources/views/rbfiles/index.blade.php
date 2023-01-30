@@ -27,11 +27,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-3">
-                            <input class="form-control"  type="text" name="ref" placeholder="RB1" required/>
+                            <input class="form-control"  type="text" name="ref" placeholder="RB23" required/>
                         </div>
-                        <!--<div class="col-3">-->
-                        <!--    <input class="form-control"  type="text" name="supplier" placeholder="supplier" required/>-->
-                        <!--</div>-->
+                        
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary">Search</button>
+
+                        </div>
+                    </div>
+                </div> <br>
+            </form>
+            
+            <form action="{{ route('rbfile.importer') }}" method="GET">
+                       
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <input class="form-control"  type="text" name="importer" placeholder="Zupco" required/>
+                        </div>
+                        
                         <div class="col-2">
                             <button type="submit" class="btn btn-primary">Search</button>
 
@@ -40,6 +54,7 @@
                 </div> <br>
             </form>
         </div>
+        
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -57,10 +72,10 @@
                                         <th>id</th>
                                         <th class="d-none d-xl-table-cell">Date</th>
                                         <th class="d-none d-xl-table-cell">Ref.</th>
-                                        <th class="d-none d-xl-table-cell">Import</th>
+                                        <th class="d-none d-xl-table-cell">Importer</th>
                                         <th class="d-none d-xl-table-cell">Supplier</th>
                                         <th class="d-none d-md-table-cell">Paid</th>
-                                        <th class="d-none d-md-table-cell">Status</th>
+                                        
                                         <th class="d-none d-md-table-cell">Description</th>
                                         <th class="d-none d-md-table-cell">Action</th>
 
@@ -73,10 +88,10 @@
                                         <td>{{$rb->id}}</td>
                                         <td class="d-none d-xl-table-cell">{{$rb->created_at}}</td>
                                         <td class="d-none d-xl-table-cell">{{$rb->ref}}</td>
-                                        <td  ><span class="badge bg-secondary">{{$rb->import}}</span></td>
+                                        <td  ><span class="badge bg-secondary">{{$rb->importer}}</span></td>
                                         <td class="d-none d-xl-table-cell">{{$rb->supplier}}</td>
-                                        <td><span class="badge bg-success">{{$rb->payed}}</span></td>
-                                        <td><span class="badge bg-success">{{$rb->status->file_opened}}</span></td>
+                                        <td><span class="badge bg-success">{{$rb->paid}}</span></td>
+                                        
                                         <td class="d-none d-lg-table-cell">{{$rb->description}}</td>
                                         <td class="d-none d-md-table-cell">
                                             <a  href="{{route('rbfiles.show', $rb->id)}}">

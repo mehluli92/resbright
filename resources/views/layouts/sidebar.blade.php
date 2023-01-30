@@ -106,13 +106,13 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{route('rbfiles.unpaid')}}">
       <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Pending Payments.</span>
     </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{route('rbfiles.paid')}}">
       <i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Paid Orders</span>
     </a>
             </li>

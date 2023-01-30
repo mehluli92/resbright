@@ -122,7 +122,7 @@ class RbFileController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function edit($id)
     {
@@ -136,7 +136,7 @@ class RbFileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request 
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -158,7 +158,7 @@ class RbFileController extends Controller
 
         $rb = RbFile::find($id);
 
-        //make reference number by concatenating the two values
+        //make reference number by concatenating the two values 
         $referrence = "RB".$id;
         $rb->ref = $referrence; 
         $rb->entry_number = $request->entry_number; 
@@ -341,7 +341,7 @@ class RbFileController extends Controller
 
     public function showAll()
     {
-        $rbs = RbFile::paginate(5);
+        $rbs = RbFile::paginate(20);
         $user = Auth::user();
 
         return view('rbfiles.index')->with('rbs', $rbs)
@@ -366,19 +366,36 @@ class RbFileController extends Controller
     {
          // Get the search value from the request
         // $supplier = $request->input('supplier');
-        $ref = $request->input('ref');
+        $ref = $request->ref;
+        $rbs = \DB::table('rb_files');
 
-        // Search in the title and body columns from the posts table
-        $rbs = RbFile::where('ref', $ref )
-                ->get();
-            // ->where('supplier', 'LIKE', "%{$supplier}%")
-            // ->orWhere('ref', 'LIKE', "%{$ref}%")
-            // ->get();
+        $rbs = $rbs->where('ref', 'LIKE', "%" . $ref . "%");
+
+        $rbs = $rbs->paginate(2);
+        
         
             $user = Auth::user();
 
-        return back()->with('rbs', $rbs)
-                      ->with('user', $user);
+        return view('rbfiles.index')->with('rbs', $rbs)
+                                    ->with('user', $user);
+    }
+    
+    public function searchImporter(Request $request)
+    {
+         // Get the search value from the request
+        // $supplier = $request->input('supplier');
+        $importer = $request->importer;
+        $rbs = \DB::table('rb_files');
+
+        $rbs = $rbs->where('importer', 'LIKE', "%" . $importer . "%");
+
+        $rbs = $rbs->paginate(2);
+        
+        
+            $user = Auth::user();
+
+        return view('rbfiles.index')->with('rbs', $rbs)
+                                    ->with('user', $user);
     }
 
    

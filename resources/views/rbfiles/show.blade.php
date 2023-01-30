@@ -658,11 +658,11 @@
                    </div>
                    <div class="row">
                        <div class="col-md-3">
-                           <input class="form-check-input" name="query_raised_on_classification" type="checkbox" value="1" id="query_raised_on_classification">
+                           <input class="form-check-input" name="appeal_done" type="checkbox" value="1" id="appeal_done">
                        </div>
                        <div class="col-md-5 ms-auto"> 
-                           <label class="form-check-label" for="query_raised_on_classification">
-                              Query raised on classification.
+                           <label class="form-check-label" for="appeal_done">
+                              Apeal Done.
                            </label>
                        </div>
                        <hr>
@@ -757,6 +757,17 @@
                    </div>
                    <div class="row">
                        <div class="col-md-3">
+                           <input class="form-check-input" name="loaded" type="checkbox" value="1" id="loaded">
+                       </div>
+                       <div class="col-md-5 ms-auto"> 
+                           <label class="form-check-label" for="goods_delivered">
+                              Goods loaded.
+                           </label>
+                       </div>
+                       <hr>
+                   </div>
+                   <div class="row">
+                       <div class="col-md-3">
                            <input class="form-check-input" name="goods_delivered" type="checkbox" value="1" id="goods_delivered">
                        </div>
                        <div class="col-md-5 ms-auto"> 
@@ -777,6 +788,7 @@
                        </div>
                        <hr>
                    </div>
+                   
                    <div class="row">
                        <div class="col-md-3">
                            <input class="form-check-input" name="file_closed" type="checkbox" value="1" id="file_closed">
@@ -785,7 +797,44 @@
                            <label class="form-check-label" for="file_closed">
                               Close File.
                            </label>
-                       </div>  
+                       </div> 
+                       <hr>
+                   </div>
+                   
+                    <div class="row">
+                       <div class="col-md-3">
+                           <input class="form-check-input" name="duty_pending" type="checkbox" value="1" id="duty_pending">
+                       </div>
+                       <div class="col-md-5 ms-auto"> 
+                           <label class="form-check-label" for="duty_pending">
+                              Duty Pending
+                           </label>
+                       </div>
+                       <hr>
+                   </div>
+                   
+                    <div class="row">
+                       <div class="col-md-3">
+                           <input class="form-check-input" name="duty_add" type="checkbox" value="1" id="duty_add">
+                       </div>
+                       <div class="col-md-5 ms-auto"> 
+                           <label class="form-check-label" for="duty_add">
+                              Add Duty
+                           </label>
+                       </div>
+                       <hr>
+                   </div>
+                   
+                    <div class="row">
+                       <div class="col-md-3">
+                           <input class="form-check-input" name="storage_pending" type="checkbox" value="1" id="storage_pending">
+                       </div>
+                       <div class="col-md-5 ms-auto"> 
+                           <label class="form-check-label" for="duty_pending">
+                              Storage Pending
+                           </label>
+                       </div>
+                       <hr>
                    </div>
 
                    <input type="hidden" id="rb_file_id" name="rb_file_id" value={{$rb->id}}>

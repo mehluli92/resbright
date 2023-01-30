@@ -54,9 +54,11 @@ Route::resource('employments', EmploymentController::class)->middleware('auth');
 Route::resource('rbfiles', RbFileController::class)->middleware('auth');
 Route::get('/all-rbfiles', 'RbFileController@showAll')->name('rbfiles.all');
 Route::put('/status-rbfiles/{rbfile}', 'RbFileController@status')->name('rbfiles.status');
-Route::get('search-rbfiles', 'UserController@search')->name('rbfiles.search')->middleware('auth'); 
+Route::get('search-rbfiles', 'RbFileController@search')->name('rbfiles.search')->middleware('auth'); 
+Route::get('search-rbfile', 'RbFileController@searchImporter')->name('rbfile.importer')->middleware('auth');
 Route::get('/download/{name}', 'HomeController@getDownload')->name('rbfiles.download')->middleware('auth'); 
 Route::get('/invoice-download/{name}', 'HomeController@getInvoice')->name('invoice.download')->middleware('auth'); 
+
 
 
 
@@ -69,6 +71,8 @@ Route::resource('prices', PriceController::class)->middleware('auth');
 
 //Payments
 Route::resource('payments', PaymentsController::class)->middleware('auth'); 
+Route::get('/unpaid-rb', 'PaymentsController@unpaid')->name('rbfiles.unpaid')->middleware('auth');
+Route::get('/paid-rb', 'PaymentsController@paid')->name('rbfiles.paid')->middleware('auth');
 
 //Status updates
 Route::put('/update-status/{rb_id}', 'SatusController@updateStatus')->name('status.update');

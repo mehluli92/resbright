@@ -9,6 +9,8 @@ use Mail;
 use App\Mail\MailNotify;
 use App\Events\PaymentMade;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 //manually add payments to the system in case someone pays in cash
 class PaymentsController extends Controller
@@ -58,6 +60,10 @@ class PaymentsController extends Controller
         $payment->save();
 
         $rb = $payment->rb_file();
+        
+        $rb->paid = 1;
+        $rb->save();
+        
         $user = Auth::user();
 
        //return to previous page
@@ -144,5 +150,26 @@ class PaymentsController extends Controller
         $payment = Payment::find($id);
         $payment->delete();
         //return back to previous page
+    }
+    
+    public function unpaid()
+    {
+       $rbs = DB::table('rb_files')->where('paid','==', NULL)->get();
+       
+        $user = Auth::user();
+        return view('rbfiles.unpaid')->with('rbs', $rbs)
+                                     ->with('user', $user);
+    }
+    
+     public function paid()
+    {
+        $rbs = DB::table('rb_files')
+                        ->where('paid', '==', 1)
+                        ->get();
+
+        $user = Auth::user();
+        
+        return view('rbfiles.paid')->with('rbs', $rbs)
+                                     ->with('user', $user);
     }
 }

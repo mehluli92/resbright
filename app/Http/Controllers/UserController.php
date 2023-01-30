@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(20);
         $user = Auth::user();
 
         return view('users.index')->with('users', $users)
@@ -70,7 +70,7 @@ class UserController extends Controller
         $contact->user_id = $user->id;
         $contact->save();
 
-        $message = "You have been registered on Resbright portal with success. Go to www.resbright-portal.com . Use your email and mobile number starting with as password";
+        $message = "You have been registered on Resbright portal with success. Go to http://resbright-portal.com . Use your email and password as mobile number shown above";
 
         event(new UserRegistered($user->email, $user->mobile, $user->name, $message));
         
@@ -149,13 +149,16 @@ class UserController extends Controller
     public function search(Request $request)
     {
          // Get the search value from the request
-        $mobile = $request->input('mobile');
+        $email = $request->email;
+        $users = \DB::table('users');
+
+        $users = $users->where('email', 'LIKE', "%" . $email . "%");
 
         // Search in the title and body columns from the posts table
-        $users = User::query()
-            ->where('mobile', 'LIKE', "%{$mobile}%")
-            ->get();
+        $users = $users->paginate(2);
+         $user = Auth::user();
         
-        return back()->with('users', $users);
+        return view('users.index')->with('users', $users)
+                                   ->with('user', $user);
     }
 }

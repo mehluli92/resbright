@@ -17,7 +17,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-3">
-                                    <input class="form-control"  type="text" name="mobile" placeholder="+263xxxxxxxxx" required/>
+                                    <input class="form-control"  type="text" name="email" placeholder="jon@gmail.com" required/>
                                 </div>
                                 <div class="col-2">
                                     <button type="submit" class="btn btn-primary">Search</button>
